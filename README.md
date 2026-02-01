@@ -38,7 +38,8 @@ Java Build Path
 ### 4.pom.xml 設定
 
 - 下記を張り付ける
-```xml
+
+```sh
 	<dependencies>
 		<!-- JUnit 5 本体 -->
 		<dependency>
@@ -46,7 +47,6 @@ Java Build Path
 			<artifactId>junit-jupiter</artifactId>
 			<scope>test</scope>
 		</dependency>
-
 		<!-- Mockito 5 (inline機能がデフォルトで含まれる) -->
 		<dependency>
 			<groupId>org.mockito</groupId>
@@ -54,7 +54,6 @@ Java Build Path
 			<version>5.11.0</version>
 			<scope>test</scope>
 		</dependency>
-
 		<!-- JUnit 5とMockitoを連携させる拡張 -->
 		<dependency>
 			<groupId>org.mockito</groupId>
@@ -64,3 +63,4 @@ Java Build Path
 		</dependency>
 	</dependencies>
 ```
+

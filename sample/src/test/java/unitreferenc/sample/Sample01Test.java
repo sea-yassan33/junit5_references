@@ -15,6 +15,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.MockedStatic;
+import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 @ExtendWith(MockitoExtension.class)
@@ -102,10 +103,8 @@ class Sample01Test extends Sample01 {
 		// ダミーデータ
 		List<String> expectedMockResult = List.of("A", "C");
 
-		try (MockedStatic<Sample01> mockedSample02 = mockStatic(Sample01.class)) {
-			// drawWinnersは「本物」を動かし、reverseListWithStreamだけを「Mock」にする設定
-			mockedSample02.when(() -> Sample01.drawWinners(anyList(), anyInt())).thenCallRealMethod();
-			mockedSample02.when(() -> Sample01.reverseListWithStream(anyList(), anyInt()))
+		try (MockedStatic<Sample01> mockedSample01 = mockStatic(Sample01.class, Mockito.CALLS_REAL_METHODS)) {
+			mockedSample01.when(() -> Sample01.reverseListWithStream(anyList(), anyInt()))
 					.thenReturn(expectedMockResult);
 
 			// 実行
@@ -114,7 +113,7 @@ class Sample01Test extends Sample01 {
 			// 検証
 			assertEquals(expectedMockResult, actual);
 			// reverseListWithStreamが正しく呼ばれたか検証
-			mockedSample02.verify(() -> Sample01.reverseListWithStream(items, num));
+			mockedSample01.verify(() -> Sample01.reverseListWithStream(items, num));
 		}
 		
 	}

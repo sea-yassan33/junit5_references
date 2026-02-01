@@ -11,9 +11,7 @@ public class Sample01 {
 		 * 複数当選とバリデーション付き
 		 */
 		List<String> items = List.of("A", "B", "C", "D", "E", "F");
-
 		int n = 3;
-
 		List<String> winners = drawWinners(items, n);
 		System.out.println("【当選者】：" + winners);
 	}
